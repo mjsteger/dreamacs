@@ -12,7 +12,7 @@
 (when (version< emacs-version "24.1")
   (error "Dreamacs requires at least GNU Emacs 24.1"))
 
-(defvar dreamacs-base-dir (expand-file-name ".")
+(defvar dreamacs-base-dir (expand-file-name "~/dreamacs")
   "The root directory of dreamacs")
 (defvar dreamacs-core-dir (expand-file-name "core" dreamacs-base-dir)
   "The home of Dreamacs's core functionality.")
@@ -25,7 +25,7 @@
 
 (unless (file-exists-p dreamacs-savefile-dir)
   (make-directory dreamacs-savefile-dir))
-
+(setq default-directory dreamacs-base-dir)
 (normal-top-level-add-subdirs-to-load-path)
 
 (require-all '(

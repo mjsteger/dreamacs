@@ -34,7 +34,7 @@ Will only occur if dreamacs-whitespace is also enabled."
 ;; delete the selection with a keypress
 (delete-selection-mode t)
 
-;; store all backup and autosave files in the tmp dir
+; store all backup and autosave files in the tmp dir
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
@@ -286,4 +286,3 @@ indent yanked text (with prefix arg don't indent)."
       backup-by-copying t) ;; Copy all files, don't rename them.)
 
 (provide 'dreamacs-editor)
-(backup-buffer)

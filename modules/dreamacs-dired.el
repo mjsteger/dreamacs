@@ -1,4 +1,5 @@
 (dreamacs-require-packages '(dired-subtree))
+(require 'dired)
 
 (define-key dired-mode-map (kbd "C-, i") 'dired-subtree-insert)
 (define-key dired-mode-map (kbd "C-, d") 'dired-subtree-remove)
