@@ -272,6 +272,18 @@ indent yanked text (with prefix arg don't indent)."
 (global-set-key (kbd "M-[") 'winner-undo)
 (global-set-key (kbd "M-]") 'winner-redo)
 
+(rainbow-mode)
 
+(let ((dreamacs-backup-dir (concat dreamacs-savefile-dir "/backups")))
+  (unless (file-exists-p dreamacs-backup-dir)
+    (make-directory dreamacs-backup-dir))
+  (setq backup-directory-alist `((".*" . ,dreamacs-backup-dir))))
+
+
+(setq version-control t
+      kept-new-versions 6
+      delete-old-versions t ;; Don't ask to delete excess backup versions.
+      backup-by-copying t) ;; Copy all files, don't rename them.)
 
 (provide 'dreamacs-editor)
+(backup-buffer)
