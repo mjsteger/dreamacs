@@ -1,3 +1,6 @@
-(require 'dreamacs-autocomplete)
-(require 'dreamacs-ido)
-(require 'dreamacs-ruby)
+(require-all '(
+               dreamacs-autocomplete
+               dreamacs-ido
+               dreamacs-ruby
+               dreamacs-gist
+               ))

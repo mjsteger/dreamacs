@@ -23,8 +23,6 @@
 (defvar dreamacs-modules-file (expand-file-name "dreamacs-modules.el" dreamacs-base-dir)
   "This files contains a list of modules that will be loaded by Dreamacs.")
 
-
-
 (unless (file-exists-p dreamacs-savefile-dir)
   (make-directory dreamacs-savefile-dir))
 
@@ -53,8 +51,6 @@
 ;; add Dreamacs's directories to Emacs's `load-path'
 (add-to-list 'load-path dreamacs-core-dir)
 (add-to-list 'load-path dreamacs-modules-dir)
-(add-to-list 'load-path dreamacs-vendor-dir)
-(dreamacs-add-subfolders-to-load-path dreamacs-vendor-dir)
 
 
 
