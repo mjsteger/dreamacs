@@ -285,4 +285,8 @@ indent yanked text (with prefix arg don't indent)."
       delete-old-versions t ;; Don't ask to delete excess backup versions.
       backup-by-copying t) ;; Copy all files, don't rename them.)
 
+;Make markdown pretend things are github markdown, since I use it a bunch
+(setq markdown-command "~/.cabal/bin/pandoc --from markdown_github")
+
 (provide 'dreamacs-editor)
+

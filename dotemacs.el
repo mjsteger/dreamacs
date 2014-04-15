@@ -2,9 +2,7 @@
 
 (defun require-all (requirelist)
   (mapc #'require requirelist))
-  ;; (loop for requirement in requirelist do
-  ;; 	(load (symbol-name requirement))
-  ;; ))
+  
 (defvar current-user
       (getenv
        (if (equal system-type 'windows-nt) "USERNAME" "USER")))
@@ -20,6 +18,8 @@
   "This folder stores all the automatically generated save/history-files.")
 (defvar dreamacs-modules-dir (expand-file-name  "modules." dreamacs-base-dir)
   "This directory houses all of the built-in Dreamacs modules.")
+(defvar dreamacs-personal-dir (expand-file-name "personal" dreamacs-base-dir)
+  )
 (defvar dreamacs-modules-file (expand-file-name "dreamacs-modules.el" dreamacs-base-dir)
   "This files contains a list of modules that will be loaded by Dreamacs.")
 
@@ -52,8 +52,6 @@
 (add-to-list 'load-path dreamacs-core-dir)
 (add-to-list 'load-path dreamacs-modules-dir)
 
-
-
 ;; reduce the frequency of garbage collection by making it happen on
 ;; each 50MB of allocated data (the default is on every 0.76MB)
 (setq gc-cons-threshold 50000000)
@@ -61,3 +59,7 @@
 ;; OSX specific settings
 (when (eq system-type 'darwin)
   (require 'dreamacs-osx))
+
+(when (file-exists-p dreamacs-personal-dir)
+  (message "Loading personal configuration files in %s..." dreamacs-personal-dir)
+  (mapc 'load (directory-files dreamacs-personal-dir 't "^[^#].*el$")))
