@@ -1,4 +1,4 @@
-(dreamacs-require-packages '(ruby-tools inf-ruby yari robe rbenv flymake-ruby rspec-mode))
+(dreamacs-require-packages '(inf-ruby yari robe rbenv flymake-ruby rspec-mode ruby-end))
 
 ;; Rake files are ruby, too, as are gemspecs, rackup files, and gemfiles.
 (add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
@@ -16,13 +16,16 @@
 (add-to-list 'auto-mode-alist '("\\.podspec\\'" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Puppetfile\\'" . ruby-mode))
 
+(define-key ruby-mode-map (kbd "<tab>") 'ruby-indent-line)
+
 (eval-after-load 'ruby-mode
   '(progn
      (defun dreamacs-ruby-mode-defaults ()
        (inf-ruby-minor-mode +1)
-       (ruby-tools-mode +1)
        ;; CamelCase aware editing operations
        (subword-mode +1)
+	(flymake-ruby-load)
+        (ruby-end-mode)
        (robe-mode)
        )
 

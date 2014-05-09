@@ -288,5 +288,8 @@ indent yanked text (with prefix arg don't indent)."
 ;Make markdown pretend things are github markdown, since I use it a bunch
 (setq markdown-command "~/.cabal/bin/pandoc --from markdown_github")
 
+(global-linum-mode)
+
 (provide 'dreamacs-editor)
+
 
