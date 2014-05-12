@@ -10,7 +10,4 @@
 ; Prevent me from getting autocompletes unless I'm actually typing
 (setq company-begin-commands '(self-insert-command))
 
-(global-set-key "\t" 'company-complete)
-
-
 (provide 'dreamacs-autocomplete)
