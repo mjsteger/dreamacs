@@ -1,5 +1,7 @@
 (dreamacs-require-packages '(org-pomodoro))
 
+(require 'ob)
+
 (defvar home (expand-file-name "~/"))
 
 (setq org-return-follows-link t)
@@ -28,4 +30,5 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c r") 'org-capture)
 (setq org-capture-templates (quote (("t" "Todo" entry (file "~/national/todo.org")
-                                     "* TODO %?\n  %i\n " :clock-in t :clock-resume t))))
+                                     "* TODO %?\n  %i\n " ))))
+(provide 'dreamacs-org)
