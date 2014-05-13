@@ -9,7 +9,8 @@
 
 (when (version< emacs-version "24.1")
   (error "Dreamacs requires at least GNU Emacs 24.1"))
-(defvar dreamacs-base-dir (file-name-directory (or load-file-name (buffer-file-name (current-buffer))))
+(defvar dreamacs-base-dir (expand-file-name "~/dreamacs")
+
     "The root directory of dreamacs")
 (defvar dreamacs-core-dir (expand-file-name "core" dreamacs-base-dir)
   "The home of Dreamacs's core functionality.")
@@ -62,3 +63,5 @@
 (when (file-exists-p dreamacs-personal-dir)
   (message "Loading personal configuration files in %s..." dreamacs-personal-dir)
   (mapc 'load (directory-files dreamacs-personal-dir 't "^[^#].*el$")))
+(put 'narrow-to-region 'disabled nil)
+
