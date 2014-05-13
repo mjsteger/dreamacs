@@ -18,4 +18,5 @@
                         projectile
                         ruby
                         yasnippet
+                        vagrant
                ))
