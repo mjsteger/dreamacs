@@ -9,7 +9,7 @@
 
 (when (version< emacs-version "24.1")
   (error "Dreamacs requires at least GNU Emacs 24.1"))
-(defvar dreamacs-base-dir (expand-file-name "~/dreamacs")
+(defvar dreamacs-base-dir (expand-file-name (getenv "DREAMACS_PATH"))
 
     "The root directory of dreamacs")
 (defvar dreamacs-core-dir (expand-file-name "core" dreamacs-base-dir)

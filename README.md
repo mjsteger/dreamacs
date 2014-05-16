@@ -4,4 +4,8 @@ The simplest way to "install" and get this working is to simply symlink the star
 
 ```ln -s /path/to/dreamacs/dotemacs.el ~/.emacs```
 
+Then add something like this to you bash_profile:
+
+```export DREAMACS_PATH="~/code/dreamacs/"```
+
 If you are new to emacs, I recommend using guru-mode, which will discourage/prevent you from using the "wrong" keybindings(that is, the arrow keys and other similarly "unemacs-y" keybindings). You can do this by putting the following into you
