@@ -1,0 +1,17 @@
+* We'll want to install ace-window
+
+#+BEGIN_SRC emacs-lisp
+(dreamacs-require-packages '(ace-window))
+#+END_SRC
+
+* set up the keys to be convenient for my keybinding. It should be set up such that it looks up the current keyboard set. We'll also set M-o to start ace-window, since it should be convenient to start off
+#+begin_src emacs-lisp
+(setq aw-keys '(?a ?s ?h ?t ?n ?e ?o ?i ?9))
+(global-set-key (kbd "M-o") 'ace-window)
+#+end_src
+
+
+* Finally we'll provide the stuff. We'll probably remove this in the vanguard setup
+#+begin_src emacs-lisp
+(provide 'dreamacs-ace)
+#+end_src
