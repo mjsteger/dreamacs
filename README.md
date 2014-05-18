@@ -4,8 +4,33 @@ The simplest way to "install" and get this working is to simply symlink the star
 
 ```ln -s /path/to/dreamacs/dotemacs.el ~/.emacs```
 
-Then add something like this to you bash_profile:
+If you already have a .emacs, though, this could be undesirable - you don't want to lose the configuration you've painfully built up!
+
+If so, you can set set up your .emacs to load against dreamacs, and then do whatever else you want, like:
+
+```
+(load "~/dreamacs/dotemacs")
+; Other cool .emacs stuff
+```
+
+This is also the recommended way to add your own configurations to dreamacs, doing something like:
+
+```
+(defvar dreamacs-personal-dir (expand-file-name "personal" "~/.emacs.d/"))
+
+(when (file-exists-p dreamacs-personal-dir)
+  (message "Loading personal configuration files in %s..." dreamacs-personal-dir)
+  (mapc 'load (directory-files dreamacs-personal-dir 't "^[^#].*el$")))
+```
+
+I'd also highly recommend you keep your .emacs.d in version control as well!
+
+You can also set up dreamacs to load from an enviornment variable, by adding something like this to your {bash,zsh}_profile:
 
 ```export DREAMACS_PATH="~/code/dreamacs/"```
 
-If you are new to emacs, I recommend using guru-mode, which will discourage/prevent you from using the "wrong" keybindings(that is, the arrow keys and other similarly "unemacs-y" keybindings). You can do this by putting the following into you
+If you are new to emacs, I recommend using guru-mode, which will discourage/prevent you from using the "wrong" keybindings(that is, the arrow keys and other similarly "unemacs-y" keybindings). You can do this by adding something like
+```
+(guru-mode)
+```
+into your .emacs

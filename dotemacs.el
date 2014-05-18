@@ -18,8 +18,6 @@
   "This folder stores all the automatically generated save/history-files.")
 (defvar dreamacs-modules-dir (expand-file-name  "modules." dreamacs-base-dir)
   "This directory houses all of the built-in Dreamacs modules.")
-(defvar dreamacs-personal-dir (expand-file-name "personal" dreamacs-base-dir)
-  )
 (defvar dreamacs-modules-file (expand-file-name "dreamacs-modules.el" dreamacs-base-dir)
   "This files contains a list of modules that will be loaded by Dreamacs.")
 
@@ -60,8 +58,6 @@
 (when (eq system-type 'darwin)
   (require 'dreamacs-osx))
 
-(when (file-exists-p dreamacs-personal-dir)
-  (message "Loading personal configuration files in %s..." dreamacs-personal-dir)
-  (mapc 'load (directory-files dreamacs-personal-dir 't "^[^#].*el$")))
+
 (put 'narrow-to-region 'disabled nil)
 
