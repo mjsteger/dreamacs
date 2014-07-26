@@ -1,4 +1,4 @@
-(dreamacs-require-packages '(inf-ruby yari robe rbenv flymake-ruby rspec-mode ruby-end))
+(dreamacs-require-packages '(inf-ruby yari robe rbenv flymake-ruby rspec-mode ruby-end rubocop))
 
 ;; Rake files are ruby, too, as are gemspecs, rackup files, and gemfiles.
 (add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
@@ -60,3 +60,11 @@
 (provide 'dreamacs-ruby)
 
 
+(setq ruby-insert-encoding-magic-comment nil)
+(setq ruby-deep-indent-paren-style nil)
+(setq ruby-deep-arglist nil)
+
+(add-hook 'after-init-hook #'global-flycheck-mode)
+(setq flycheck-check-syntax-automatically '(mode-enabled save idle-change))
+
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
