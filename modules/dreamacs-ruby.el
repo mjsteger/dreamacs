@@ -41,3 +41,6 @@
 (defadvice inf-ruby-console-auto (before activate-rbenv-for-robe activate)
   (rbenv-use-corresponding))
 (provide 'dreamacs-ruby)
+
+; This allows you to switch between rspec-compilation-mode and ruby-compilation-mode
+(inf-ruby-switch-setup)
