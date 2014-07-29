@@ -32,3 +32,15 @@
 (setq org-capture-templates (quote (("t" "Todo" entry (file "~/national/todo.org")
                                      "* TODO %?\n  %i\n " ))))
 (provide 'dreamacs-org)
+
+;; Set to the location of your Org files on your local system
+(setq org-directory "~/Dropbox/national")
+
+;; Set to the name of the file where new notes will be stored
+(setq org-mobile-inbox-for-pull "~/org/flagged.org")
+
+;; Set to <your Dropbox root directory>/MobileOrg.
+(setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
+
+;; (require 'org-agenda)
+;; (org-agenda-file-to-front "~/Dropbox/national")
