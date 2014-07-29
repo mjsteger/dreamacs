@@ -1,3 +1,13 @@
+;;; dreamacs.el --- Make using emacs a dream!
+
+;; Copyright (C) 2014 Michael Steger
+
+;; Author: Michael Steger <mjsteger1@gmail.com>
+;; Maintainer: Michael Steger <mjsteger1@gmail.com>
+;; Created: 20 Feb 2014
+;; Version: 0.01
+;; Keywords: package
+
 (require 'cl)
 
 (defun require-all (requirelist)
@@ -61,3 +71,4 @@
 
 (put 'narrow-to-region 'disabled nil)
 
+;;; dreamacs.el ends here
