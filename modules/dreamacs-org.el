@@ -31,6 +31,9 @@
 (global-set-key (kbd "C-c r") 'org-capture)
 (setq org-capture-templates (quote (("t" "Todo" entry (file "~/national/todo.org")
                                      "* TODO %?\n  %i\n " ))))
+
+(setq org-agenda-skip-scheduled-if-done t)
+
 (provide 'dreamacs-org)
 
 ;; Set to the location of your Org files on your local system

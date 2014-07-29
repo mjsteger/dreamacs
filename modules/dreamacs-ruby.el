@@ -1,4 +1,4 @@
-(dreamacs-require-packages '(inf-ruby yari robe rbenv flymake-ruby rspec-mode ruby-end))
+(dreamacs-require-packages '(inf-ruby yari robe rbenv flymake-ruby rspec-mode ruby-end rubocop))
 
 ;; Rake files are ruby, too, as are gemspecs, rackup files, and gemfiles.
 (add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
@@ -40,7 +40,36 @@
 
 (defadvice inf-ruby-console-auto (before activate-rbenv-for-robe activate)
   (rbenv-use-corresponding))
-(provide 'dreamacs-ruby)
+
+ ; c.f. http://stackoverflow.com/questions/7961533/emacs-ruby-method-parameter-indentation
+(defadvice ruby-indent-line (after unindent-closing-paren activate)
+  (let ((column (current-column))
+        indent offset)
+    (save-excursion
+      (back-to-indentation)
+      (let ((state (syntax-ppss)))
+        (setq offset (- column (current-column)))
+        (when (and (eq (char-after) ?\))
+                   (not (zerop (car state))))
+          (goto-char (cadr state))
+          (setq indent (current-indentation)))))
+    (when indent
+      (indent-line-to indent)
+      (when (> offset 0) (forward-char offset)))))
 
 ; This allows you to switch between rspec-compilation-mode and ruby-compilation-mode
 (inf-ruby-switch-setup)
+
+(setq ruby-insert-encoding-magic-comment nil)
+(setq ruby-deep-indent-paren-style nil)
+(setq ruby-deep-arglist nil)
+
+(add-hook 'after-init-hook #'global-flycheck-mode)
+(setq flycheck-check-syntax-automatically '(mode-enabled save idle-change))
+
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+
+
+(provide 'dreamacs-ruby)
+
