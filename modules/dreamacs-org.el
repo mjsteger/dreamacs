@@ -47,3 +47,19 @@
 
 ;; (require 'org-agenda)
 ;; (org-agenda-file-to-front "~/Dropbox/national")
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '(
+   (org . t)
+   (emacs-lisp . t)
+   (sh . t)
+   (python . t)
+   (R . t)
+   (ruby . t)
+   (ditaa . t)
+   (dot . t)
+   (octave . t)
+   (sqlite . t)
+   (perl . t)
+   ))

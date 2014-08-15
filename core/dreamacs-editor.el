@@ -290,6 +290,11 @@ indent yanked text (with prefix arg don't indent)."
 
 (global-linum-mode)
 
+(defun electric--turn-on ()
+  (unless (minibufferp)
+    (electric-indent-mode +1)))
+
+(define-globalized-minor-mode global-electric-mode electric-indent-mode electric--turn-on)
+
+(global-electric-mode)
 (provide 'dreamacs-editor)
-
-
