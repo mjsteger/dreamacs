@@ -72,4 +72,6 @@
 
 (put 'narrow-to-region 'disabled nil)
 
+
+(setq enable-recursive-minibuffers t)
 ;;; dreamacs.el ends here
