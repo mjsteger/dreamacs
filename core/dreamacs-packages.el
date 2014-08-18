@@ -31,6 +31,8 @@
     (add-to-list 'dreamacs-packages package))
   (unless (package-installed-p package)
     (package-install package)))
+    (package-install package))
+  (require package))
 
 (defun dreamacs-packages-installed-p ()
   "Check if all packages in `dreamacs-packages' are installed."
