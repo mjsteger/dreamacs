@@ -30,7 +30,6 @@
   (unless (memq package dreamacs-packages)
     (add-to-list 'dreamacs-packages package))
   (unless (package-installed-p package)
-    (package-install package)))
     (package-install package))
   (require package))
 
