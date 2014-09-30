@@ -30,7 +30,10 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c r") 'org-capture)
 (setq org-capture-templates (quote (("t" "Todo" entry (file "~/national/todo.org")
-                                     "* TODO %?\n  %i\n " ))))
+                                     "* TODO %?\n  %i\n " )
+                                    ("h" "Home" entry (file "~/national/home.org")
+                                     "* TODO %?\n  %i\n " )
+                                    )))
 
 (setq org-agenda-skip-scheduled-if-done t)
 
