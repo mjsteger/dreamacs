@@ -31,6 +31,13 @@
   "This files contains a list of modules that will be loaded by Dreamacs.")
 (defvar dreamacs-elpa-base (expand-file-name (concat dreamacs-base-dir "/elpa"))
   "This directory houses all the elpa files")
+
+(defvar dreamacs-personal-modules '()
+  "List of personal modules that will be required(that is, a file of the form dreamacs-$X is expected for every $X in this list) in during the loading of dreamacs. See dreamacs-modules.el for more info. It is expected that users will set this variable in their own config before dreamacs loads.")
+
+(defvar dreamacs-personal-configurationless-modules '()
+  "List of personal modules that are to be directly installed/required without any assosciated file expected for them. See dreamacs-modules.el for more info. It is expected that users will set this variable in their own config before dreamacs loads.")
+
 (unless (file-exists-p dreamacs-savefile-dir)
   (make-directory dreamacs-savefile-dir))
 (setq default-directory dreamacs-base-dir)

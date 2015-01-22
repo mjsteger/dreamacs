@@ -3,8 +3,9 @@
                
 
 
+(-map 'dreamacs-require-packages (append dreamacs-personal-configurationless-modules '()))
 
-(require-all-dreamacs '(
+(require-all-dreamacs (append dreamacs-personal-modules '(
                         ace
                         autocomplete
                         coffee
@@ -19,4 +20,5 @@
                         ruby
                         yasnippet
                         vagrant
-               ))
+                        org
+                        )))
