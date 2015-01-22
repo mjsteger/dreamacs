@@ -6,7 +6,7 @@
        )
       )
 
-(when dreamacs-personal-dir
+(when (boundp 'dreamacs-personal-dir)
   (add-to-list 'yas-snippet-dirs (concat dreamacs-personal-dir "/snippets")))
 
 (global-set-key (kbd "M-i") 'yas-expand)
