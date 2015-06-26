@@ -5,6 +5,7 @@
 
 ;; We'll want to use it everywhere, like so:
 
+
 (define-globalized-minor-mode global-rainbow-delimiters-mode rainbow-delimiters-mode (lambda () (rainbow-delimiters-mode +1)))
 (global-rainbow-delimiters-mode)
 (custom-set-variables

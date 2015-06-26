@@ -12,7 +12,7 @@
 
 (defun require-all (requirelist)
   (mapc #'require requirelist))
-  
+
 (defvar current-user
       (getenv
        (if (equal system-type 'windows-nt) "USERNAME" "USER")))
@@ -40,6 +40,7 @@
 
 (unless (file-exists-p dreamacs-savefile-dir)
   (make-directory dreamacs-savefile-dir))
+
 (setq default-directory dreamacs-base-dir)
 (normal-top-level-add-subdirs-to-load-path)
 
@@ -75,9 +76,23 @@
 (when (eq system-type 'darwin)
   (require 'dreamacs-osx))
 
-
 (put 'narrow-to-region 'disabled nil)
+(put 'set-goal-column 'disabled nil)
 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(pivotal-api-token "05a9ce767fee0faa47d4acc941b57bce")
+ '(znc-servers (quote (("stegerwerks.org" 44444 nil ((stegerwerks "steggy" "thisismyircpasswordyayIrock1")))))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
 
 (setq enable-recursive-minibuffers t)
+
 ;;; dreamacs.el ends here

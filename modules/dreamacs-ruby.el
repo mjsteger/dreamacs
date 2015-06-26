@@ -28,13 +28,12 @@
         (ruby-end-mode)
        (robe-mode)
        )
-
      (setq dreamacs-ruby-mode-hook 'dreamacs-ruby-mode-defaults)
-
      (add-hook 'ruby-mode-hook (lambda ()
                                  (run-hooks 'dreamacs-ruby-mode-hook)))))
 
-(autoload 'inf-ruby "inf-ruby" "Run an inferior Ruby process" t) (add-hook 'ruby-mode-hook 'inf-ruby-minor-mode)
+(autoload 'inf-ruby "inf-ruby" "Run an inferior Ruby process" t)
+(add-hook 'ruby-mode-hook 'inf-ruby-minor-mode)
 
 (rspec-mode)
 
@@ -69,7 +68,12 @@
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-
+(setenv "RAILS_ENV" "test")
 
 (provide 'dreamacs-ruby)
 
+(defun compile-python ()
+  (interactive)
+  (compile "python yay"))
+
+(global-set-key (kbd "C-c y") 'compile-python)
