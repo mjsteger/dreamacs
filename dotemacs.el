@@ -51,8 +51,16 @@
 	       dreamacs-editor
 	       ))
 
-(when (file-exists-p dreamacs-modules-file)
-  (load dreamacs-modules-file))
+(defun load-file-if-exists (file-name)
+  (let ((string-file-name (if (symbolp file-name) (symbol-name file-name) file-name)))
+    (when (locate-library string-file-name)
+      (if (symbolp file-name)
+          (require file-name)
+        (load file-name)))))
+
+
+(load-file-if-exists dreamacs-modules-file)
+
 
 (defun dreamacs-add-subfolders-to-load-path (parent-dir)
   "Add all level PARENT-DIR subdirs to the `load-path'."
@@ -81,6 +89,6 @@
 
 (setq enable-recursive-minibuffers t)
 
-(require 'secrets)
+(load-file-if-exists 'dreamacs-secrets)
 
 ;;; dreamacs.el ends here
