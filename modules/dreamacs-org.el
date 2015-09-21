@@ -11,23 +11,21 @@
 (setq org-log-done t)
 
 (defun make-org-name (name)
-  (concat home common-notes-prefix name))
+  (concat home common-notes-prefix name ".org"))
 
-(setq org-tickler-file (make-org-name "tickler.org")
-      org-todo-file (make-org-name "todo.org")
-      org-notes-file (make-org-name "notes.org")
-      org-interesting-file (make-org-name "interesting.org")
-      org-work-file (make-org-name "work.org")
-      org-rubyflow-file (make-org-name "rubyflow.org")
-      org-home-file (make-org-name "home.org"))
+
+
 
 (--each (list
-        org-tickler-file
-        org-todo-file
-        org-notes-file
-        org-work-file
-        org-home-file
-        )(add-to-list 'org-agenda-files it))
+         "tickler"
+         "todo"
+         "notes"
+         "interesting"
+         "work"
+         "home"
+         "google"
+         "dropbox-notes"
+         )(add-to-list 'org-agenda-files (make-org-name it)))
 
 
 (global-set-key (kbd "C-c a") 'org-agenda)
@@ -120,3 +118,25 @@
 ;;      (define-key org-agenda-keymap "\C-n" 'next-line)
 ;;      (define-key org-agenda-mode-map "\C-p" 'previous-line)
 ;;      (define-key org-agenda-keymap "\C-p" 'previous-line)))
+
+
+(setq org-icalendar-use-deadline '(todo-due event-if-todo))
+(setq org-icalendar-store-UID t)
+(setq org-icalendar-include-todo t)
+(setq org-icalendar-use-scheduled '(event-if-todo event-if-not-todo))
+(setq org-deadline-warning-days 0)
+(setq org-icalendar-timezone "Pacific Time (US & Canada)")
+
+; Allow me to refile things into other files
+(setq org-refile-targets
+      `(
+        (
+         ,org-agenda-files
+         :regexp . "refile")
+        ))
+(setq org-refile-use-outline-path 'file)
+(setq org-completion-use-ido t)
+(setq org-outline-path-complete-in-steps nil)
+(setq org-refile-allow-creating-parent-nodes t)
+
+(setq org-columns-default-format "%25ITEM %TODO %3PRIORITY %TAGS %5Effort{+} %CLOCKSUM")
