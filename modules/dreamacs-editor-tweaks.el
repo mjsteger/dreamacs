@@ -9,4 +9,4 @@
    ("/* " " */" "#" (java-mode javascript-mode css-mode))
    ("`" "`" nil (markdown-mode ruby-mode))))
 
-(require 'linum-relative)
+(provide 'dreamacs-editor-tweaks)
