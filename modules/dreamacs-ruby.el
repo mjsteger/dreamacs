@@ -1,4 +1,4 @@
-(dreamacs-require-packages '(inf-ruby yari robe rbenv flymake-ruby rspec-mode ruby-end rubocop))
+(dreamacs-require-packages '(inf-ruby yari robe rbenv flymake-ruby rspec-mode ruby-end rubocop minitest))
 
 ;; Rake files are ruby, too, as are gemspecs, rackup files, and gemfiles.
 (add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
@@ -35,7 +35,9 @@
 (autoload 'inf-ruby "inf-ruby" "Run an inferior Ruby process" t)
 (add-hook 'ruby-mode-hook 'inf-ruby-minor-mode)
 
-(rspec-mode)
+;; (rspec-mode)
+(eval-after-load 'minitest
+  '(minitest-install-snippets))
 
 (defadvice inf-ruby-console-auto (before activate-rbenv-for-robe activate)
   (rbenv-use-corresponding))
