@@ -3,7 +3,7 @@
 
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(add-to-list 'package-archives 
+(add-to-list 'package-archives
              '("marmalade" .
                "http://marmalade-repo.org/packages/"))
 (setq package-user-dir (expand-file-name "elpa" dreamacs-base-dir))
@@ -18,8 +18,8 @@
 					  gitconfig-mode gitignore-mode grizzl
 					  guru-mode projectile
 					  magit move-text rainbow-mode
-					  smartparens undo-tree
-					  volatile-highlights zenburn-theme
+					  paredit undo-tree
+					  volatile-highlights
 					  flx-ido
 					  ))
 
@@ -120,4 +120,3 @@ PACKAGE is installed only if not already present.  The file is opened in MODE."
 
 
 (provide 'dreamacs-packages)
-

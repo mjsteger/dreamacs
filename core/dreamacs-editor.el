@@ -122,10 +122,6 @@ The body of the advice is in BODY."
                  (switch-to-buffer other-window)
                  (dreamacs-auto-save-command))
 
-
-;; highlight the current line
-(global-hl-line-mode +1)
-
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
 (diminish 'volatile-highlights-mode)
@@ -286,6 +282,8 @@ indent yanked text (with prefix arg don't indent)."
     (electric-indent-mode +1)))
 
 (define-globalized-minor-mode global-electric-mode electric-indent-mode electric--turn-on)
-
+(define-globalized-minor-mode global-paredit-mode paredit-mode (lambda ()))
 (global-electric-mode)
+(global-paredit-mode 1)
+
 (provide 'dreamacs-editor)
