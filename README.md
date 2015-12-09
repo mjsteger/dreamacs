@@ -28,9 +28,3 @@ I'd also highly recommend you keep your .emacs.d in version control as well!
 You can also set up dreamacs to load from an enviornment variable, by adding something like this to your {bash,zsh}_profile:
 
 ```export DREAMACS_PATH="~/code/dreamacs/"```
-
-If you are new to emacs, I recommend using guru-mode, which will discourage/prevent you from using the "wrong" keybindings(that is, the arrow keys and other similarly "unemacs-y" keybindings). You can do this by adding something like
-```
-(guru-mode)
-```
-into your .emacs
