@@ -9,4 +9,9 @@
 (add-hook 'cider-mode-hook #'company-mode)
 (add-hook 'cider-repl-mode-hook #'paredit-mode)
 
+(add-hook 'clojure-mode-hook
+          (lambda ()
+            (set (make-local-variable 'compile-command)
+                 (concat "lein test"))))
+
 (provide 'dreamacs-clojure)
