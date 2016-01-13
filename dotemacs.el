@@ -91,4 +91,7 @@
 
 (load-file-if-exists 'dreamacs-secrets)
 
+(unless (server-running-p)
+  (server-start))
+
 ;;; dreamacs.el ends here
