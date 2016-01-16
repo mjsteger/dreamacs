@@ -91,6 +91,7 @@
 
 (load-file-if-exists 'dreamacs-secrets)
 
+(require 'server)
 (unless (server-running-p)
   (server-start))
 
