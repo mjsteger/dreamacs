@@ -68,6 +68,9 @@
 
 ; This allows you to switch between rspec-compilation-mode and ruby-compilation-mode
 (inf-ruby-switch-setup)
+(setq rspec-use-bundler-when-possible t)
+(setq rspec-use-spring-when-possible nil)
+(setq rspec-use-rake-when-possible nil)
 
 (setq ruby-insert-encoding-magic-comment nil)
 (setq ruby-deep-indent-paren-style nil)
