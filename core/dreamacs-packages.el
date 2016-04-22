@@ -15,7 +15,7 @@
 					  browse-kill-ring
 					  dash diminish elisp-slime-nav
 					  epl expand-region flycheck gist
-					  gitconfig-mode gitignore-mode grizzl
+					  gitconfig-mode gitignore-mode
 					  guru-mode projectile
 					  magit move-text rainbow-mode
 					  paredit undo-tree
