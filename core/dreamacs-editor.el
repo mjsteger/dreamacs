@@ -282,11 +282,11 @@ indent yanked text (with prefix arg don't indent)."
     (electric-indent-mode +1)))
 
 (define-globalized-minor-mode global-electric-mode electric-indent-mode electric--turn-on)
-(define-globalized-minor-mode global-paredit-mode paredit-mode (lambda ()))
+;(define-globalized-minor-mode global-paredit-mode paredit-mode (lambda ()))
 (global-electric-mode)
-(global-paredit-mode 1)
+;(global-paredit-mode 1)
 
 ; Magit should just dwim
-(magit-define-popup-action 'magit-push-popup ?P "DWIM push" 'magit-push-current)
+;; (magit-define-popup-action 'magit-push-popup ?P "DWIM push" 'magit-push-current)
 
 (provide 'dreamacs-editor)
