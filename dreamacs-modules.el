@@ -21,4 +21,7 @@
                         ruby
                         yasnippet
                         vagrant
+                        go
+                        javascript
+                        html
                         )))
