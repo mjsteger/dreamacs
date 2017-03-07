@@ -17,7 +17,6 @@
 
 
 (--each (list
-         "tickler"
          "todo"
          "notes"
          "interesting"
@@ -30,12 +29,15 @@
 
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c r") 'org-capture)
+
 (setq org-capture-templates (quote (("t" "Todo" entry (file "~/national/todo.org")
                                      "** TODO %?\n  %i\n " )
                                     ("e" "Emacs" entry (file "~/national/emacs.org")
                                      "** TODO %?\n  %i\n " )
                                     ("h" "Home" entry (file "~/national/home.org")
                                      "** TODO %?\n  %i\n " )
+                                    ("i" "Tickler" entry (file "~/national/tickler.org")
+                                     "** %?\n  %i\n " )
                                     )))
 
 (setq org-agenda-skip-scheduled-if-done t)
@@ -140,3 +142,28 @@
 (setq org-refile-allow-creating-parent-nodes t)
 
 (setq org-columns-default-format "%25ITEM %TODO %3PRIORITY %TAGS %5Effort{+} %CLOCKSUM")
+
+
+;; Shamelessly stolen from http://stackoverflow.com/questions/683425/globally-override-key-binding-in-emacs
+;; To allow global-est keybindings
+(add-hook 'after-load-functions 'my-keys-have-priority)
+
+(defun my-keys-have-priority (_file)
+  "Try to ensure that my keybindings retain priority over other minor modes.
+
+Called via the `after-load-functions' special hook."
+  (unless (eq (caar minor-mode-map-alist) 'my-keys-minor-mode)
+    (let ((mykeys (assq 'my-keys-minor-mode minor-mode-map-alist)))
+      (assq-delete-all 'my-keys-minor-mode minor-mode-map-alist)
+      (add-to-list 'minor-mode-map-alist mykeys))))
+
+(defvar my-keys-minor-mode-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "C-c r") 'org-capture)
+    map)
+  "my-keys-minor-mode keymap.")
+
+;; dreamacs-org.el ends here
+
+
+(setq org-agenda-include-diary t)
