@@ -1,4 +1,4 @@
-(dreamacs-require-packages '(inf-ruby yari robe rbenv flymake-ruby rspec-mode rubocop minitest ruby-hash-syntax ruby-refactor tdd ruby-end))
+(dreamacs-require-packages '(inf-ruby yari robe rbenv flymake-ruby rspec-mode minitest ruby-hash-syntax ruby-refactor tdd ruby-end))
 
 ;; Rake files are ruby, too, as are gemspecs, rackup files, and gemfiles.
 (add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
@@ -30,8 +30,11 @@
        (subword-mode +1)
        (flymake-ruby-load)
        (ruby-end-mode)
+       (electric-indent-mode)
        (robe-mode)
+       (rubocop-mode)
        )
+
      (setq dreamacs-ruby-mode-hook 'dreamacs-ruby-mode-defaults)
      (add-hook 'ruby-mode-hook (lambda ()
                                  (run-hooks 'dreamacs-ruby-mode-hook)))))
@@ -78,6 +81,9 @@
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (add-hook 'ruby-mode-hook 'company-mode)
+(eval-after-load 'company
+  '(push 'company-robe company-backends))
+
 (setq ruby-refactor-keymap-prefix (kbd "C-c n"))
 (add-hook 'ruby-mode-hook 'ruby-refactor-mode-launch)
 (setq flycheck-check-syntax-automatically '(mode-enabled save idle-change))

@@ -1,4 +1,4 @@
-(dreamacs-require-packages '(projectile projectile-rails helm-projectile))
+(dreamacs-require-packages '(projectile projectile-rails))
 
 (add-hook 'projectile-mode-hook 'projectile-rails-on)
 (setq projectile-enable-caching t)
@@ -10,5 +10,6 @@
 (add-to-list 'projectile-globally-ignored-directories "uploads")
 
 (projectile-global-mode)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 (provide 'dreamacs-projectile)

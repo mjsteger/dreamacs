@@ -1,44 +1,79 @@
-(dreamacs-require-packages '(org-pomodoro))
-
-(require 'ob)
+(dreamacs-require-packages '(org-pomodoro org-gcal))
 
 (defvar home (expand-file-name "~/"))
 
 (setq org-return-follows-link t)
 
-(defvar common-notes-prefix "Dropbox/national/")
+(defvar common-notes-prefix "Dropbox/national/gtd/")
 
 (setq org-log-done t)
 
 (defun make-org-name (name)
   (concat home common-notes-prefix name ".org"))
 
+(defun add-org-name-to-agenda (name func)
+  (add-to-list 'org-agenda-files (apply func name nil))
+  )
 
-
+(defun make-org-agenda-name (name)
+  (concat home common-notes-prefix "agenda/" name ".org"))
 
 (--each (list
-         "todo"
-         "notes"
-         "interesting"
-         "work"
+         "calls"
+         "office"
          "home"
-         "google"
-         "dropbox-notes"
-         )(add-to-list 'org-agenda-files (make-org-name it)))
+         "anywhere"
+         "errands"
+         "at_computer"
+         "inbox"
+         "projects"
+         "read-review"
+         "appointments"
+         "refile-beorg"
+         "consulting"
+         "google-cal"
+         )
+  (add-org-name-to-agenda it 'make-org-name))
+
+(--each (list
+         "jamie"
+         "joonas-1:1"
+         "standup"
+         )
+  (add-to-list 'org-agenda-files (make-org-agenda-name it)))
 
 
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c r") 'org-capture)
 
-(setq org-capture-templates (quote (("t" "Todo" entry (file "~/national/todo.org")
-                                     "** TODO %?\n  %i\n " )
-                                    ("e" "Emacs" entry (file "~/national/emacs.org")
-                                     "** TODO %?\n  %i\n " )
-                                    ("h" "Home" entry (file "~/national/home.org")
-                                     "** TODO %?\n  %i\n " )
-                                    ("i" "Tickler" entry (file "~/national/tickler.org")
-                                     "** %?\n  %i\n " )
-                                    )))
+(setq org-capture-templates (quote (("c" "Calls" entry (file "~/national/gtd/calls.org")
+                                     "** TODO %?\n  %i Filed on: %T\n" )
+                                    ("o" "Office" entry (file "~/national/gtd/office.org")
+                                     "** TODO %?\n  %i Filed on: %T\n")
+                                    ("T" "Consulting" entry (file "~/national/gtd/consulting.org")
+                                     "** TODO %?\n  %i Filed on: %T\n")
+                                    ("h" "Home" entry (file "~/national/gtd/home.org")
+                                     "** TODO %?\n  %i Filed on: %T\n")
+                                    ("A" "Anywhere" entry (file "~/national/gtd/anywhere.org")
+                                     "** TODO %?\n  %i Filed on: %T\n")
+                                    ("j" "Jamie Agenda" entry (file "~/national/gtd/agenda/jamie.org")
+                                     "** Scheduled %?\n  %i Filed on: %T\n")
+                                    ("a" "Appointments" entry (file "~/national/gtd/appointments.org")
+                                     "** Scheduled %?\n  %i Filed on: %T\n")
+                                    ("J" "Joonas 1-1" entry (file "~/national/gtd/agenda/joonas-1:1.org")
+                                     "** Scheduled %?\n  %i Filed on: %T\n")
+                                    ("e" "Errands" entry (file "~/national/gtd/errands.org")
+                                     "** TODO %?\n  %i Filed on: %T\n")
+                                    ("C" "At computer" entry (file "~/national/gtd/at_computer.org")
+                                     "** TODO %?\n  %i Filed on: %T\n")
+                                    ("i" "Inbox" entry (file "~/national/gtd/inbox.org")
+                                     "** %?\n %i Filed on: %T\n")
+                                    ("s" "Someday/Maybe" entry (file "~/national/gtd/someday-maybe.org")
+                                     "** %?\n %i Filed on: %T\n")
+                                    ("S" "Standup" entry (file "~/national/gtd/agenda/standup.org")
+                                     "** Scheduled %?\n  %i Filed on: %T\n")
+                                    )
+                                    ))
 
 (setq org-agenda-skip-scheduled-if-done t)
 
@@ -48,29 +83,13 @@
 (setq org-directory "~/Dropbox/national")
 
 ;; Set to the name of the file where new notes will be stored
-(setq org-mobile-inbox-for-pull "~/org/flagged.org")
+(setq org-mobile-inbox-for-pull "~/national/mobile-in.org")
 
 ;; Set to <your Dropbox root directory>/MobileOrg.
 (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
 
 ;; (require 'org-agenda)
 
-
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '(
-   (org . t)
-   (emacs-lisp . t)
-   (sh . t)
-   (python . t)
-   (R . t)
-   (ruby . t)
-   (ditaa . t)
-   (dot . t)
-   (octave . t)
-   (sqlite . t)
-   (perl . t)
-   ))
 
 (require 'appt)
 ; Automagically convert all my scheduled things into appointments
@@ -95,7 +114,7 @@
 ;;             (org-agenda-overriding-header "Unscheduled TODO entries: "))))))
 
 (setq org-todo-keywords
-      '((sequence "TODO(t)" "WAITING(w@/!)" "|" "DONE(d!)" "DELEGATED(d@)" "CANCELED(c@)")))
+      '((sequence "TODO(t!/!)" "WAITING(w@/@)" "DEFERRED(l!/!)" "Scheduled(s!/!)" "|" "DONE(d!)" "DELEGATED(d@)" "CANCELED(c@)")))
 
 ;; (eval-after-load "org"
 ;;   '(progn
@@ -163,7 +182,20 @@ Called via the `after-load-functions' special hook."
     map)
   "my-keys-minor-mode keymap.")
 
-;; dreamacs-org.el ends here
-
-
+; Set up diary file to in my home dir, and use in agenda
+(setq diary-file "~/diary")
 (setq org-agenda-include-diary t)
+
+(setq org-use-fast-tag-selection nil)
+(setq org-complete-tags-always-offer-all-agenda-tags t)
+
+(setq org-gcal-client-id "970039304533-3vr3cceh1n690ba0kgu4nva3qth22d28.apps.googleusercontent.com"
+      org-gcal-client-secret "gi56Og1aG1vS1bq3J9mZ7JnC"
+      org-gcal-file-alist '(("mjsteger1@gmail.com" .  "~/national/gtd/google-cal.org")
+                             ;; ("-mail@gmail.com" .  "~/task.org")
+                             ))
+
+(add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
+(add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync) ))
+
+;; dreamacs-org.el ends here
