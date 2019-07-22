@@ -283,7 +283,7 @@ indent yanked text (with prefix arg don't indent)."
 
 (define-globalized-minor-mode global-electric-mode electric-indent-mode electric--turn-on)
 ;(define-globalized-minor-mode global-paredit-mode paredit-mode (lambda ()))
-(global-electric-mode)
+(global-electric-mode 0)
 ;(global-paredit-mode 1)
 
 ; Magit should just dwim

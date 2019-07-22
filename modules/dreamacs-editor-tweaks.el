@@ -1,7 +1,9 @@
-(dreamacs-require-packages '(wrap-region fixme-mode helm))
+(dreamacs-require-packages '(wrap-region fixme-mode ido))
+
+(ido-everywhere t)
+(global-subword-mode)
 
 (wrap-region-global-mode t)
-(helm-mode t)
 (wrap-region-add-wrappers
  '(("$" "$")
    ("{-" "-}" "#")
