@@ -20,6 +20,7 @@
                         ruby
                         yasnippet
                         vagrant
+                        lsp
                         go
                         javascript
                         html

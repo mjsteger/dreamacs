@@ -5,16 +5,9 @@
 
 (add-hook 'before-save-hook 'lsp-format-buffer)
 
-(add-hook 'go-mode-hook #'lsp)
-
-;; ;; optional - provides fancier overlays
-;; (use-package lsp-ui
-;;   :commands lsp-ui-mode)
-
 ;; if you use company-mode for completion (otherwise, complete-at-point works out of the box):
 (use-package company-lsp
   :commands company-lsp)
-
 
 
 (push 'company-lsp company-backends)
@@ -22,8 +15,15 @@
 (add-hook 'go-mode-hook '(lambda ()                          
                            (company-mode)
                            (add-hook 'before-save-hook 'gofmt-before-save)
-;;                            (setq godef-command (s-chomp (shell-command-to-string "which godef")))
+                           (lsp)
+                           (lsp-mode)
+                           (lsp-ui-mode -1)
+                           (local-set-key (kbd "M-.") (lambda() (interactive) (lsp-find-definition)))
+
+
                            ))
+
+(define-key go-mode-map (kbd "M-.") 'lsp-find-defintion)
 
 (setq flycheck-go-golint-executable "/Users/steggy/gocode//bin/golint")
 
